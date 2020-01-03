@@ -6,7 +6,7 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 14:09:35 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/01/02 18:07:53 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/03 18:44:40 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 **FOR TRANSFERRING CURRENT GRID TO THE MAP WITCH KEEPS THE WHOLE SQUARE
 */
+
 void			grid_to_map(t_values *v, int start)
 {
 	v->map[start + 3] = v->grid & 0xFFFF;
@@ -118,14 +119,42 @@ int				rows_downward(t_values *v, int j, unsigned long *temp)
 	return (j);
 }
 
-
 /*
-**FOR TESTING IF THE TETRIMINOS FIT TO THE CURRENT SIZE OF MAP
+void			remove_block(t_values *v, int *j, unsigned long *temp)
+{
+	map_to_grid(v, *j);
+	v->grid = *temp ^ v->grid;
+	grid_to_map(v, *j);
+	*temp >>= 1;
+}
 */
+void			remove_or_save_block(t_values *v, int *j,
+									 unsigned long *temp, int i)
+{
+	if (i == 0)
+	{
+		map_to_grid(v, *j);
+		v->grid = *temp ^ v->grid;
+		grid_to_map(v, *j);
+		*temp >>= 1;
+	}
+	else
+	{
+		v->grid = *temp | v->grid;
+		grid_to_map(v, *j);
+		map_to_grid(v, 0);
+	}
+}
+
+void	save_info(t_block *blocks, unsigned long temp, int j, int i)
+{
+	blocks[i].block = temp;
+	blocks[i].row = j;
+}
+
 unsigned long	block_to_grid(t_block *blocks, t_values *v, int i)
 {
 	unsigned long	temp;
-	unsigned long	tempgrid;
 	int	j;
 
 	v->line_index = 0x800000000000000;
@@ -134,34 +163,24 @@ unsigned long	block_to_grid(t_block *blocks, t_values *v, int i)
 	temp = blocks[i].block;
 	while (temp && !v->success)
 	{
-		if (v->mask < mask4)
-			j = rows_downward(v, j, &temp);
+		j = rows_downward(v, j, &temp);
 		temp = empty_place(temp, v);
 		if (temp)
 		{
-			v->grid = temp | v->grid;
-			tempgrid = v->grid;
-			grid_to_map(v, j);
-			map_to_grid(v, 0);
+			remove_or_save_block(v, &j, &temp, 1);
 			if (!(v->success = block_to_grid(blocks, v, i + 1)))
-			{
-				v->grid = tempgrid;
-				v->grid = temp ^ v->grid;
-				grid_to_map(v, j);
-				temp >>= 1;
-			}
+				remove_or_save_block(v, &j, &temp, 0);
 			else
-			{
-				blocks[i].block = temp;
-				blocks[i].row = j;
-			}
+				save_info(blocks, temp, j, i);
 		}
 		else
 			return (0);
 	}
-	if (!i && !v->grid)
+	return ((!i && !v->grid) ? 0 : 1);
+/*	if (!i && !v->grid)
 		return (0);
-	return (1);
+	return (1);*/
+
 }
 
 void	assemble(t_block *blocks)

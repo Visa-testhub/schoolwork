@@ -6,16 +6,14 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 14:09:35 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/01/03 18:44:40 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/03 19:40:34 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-**FOR TRANSFERRING CURRENT GRID TO THE MAP WITCH KEEPS THE WHOLE SQUARE
-*/
-
+**FOR TRANSFERRING CURRENT GRID TO THE MAP
 void			grid_to_map(t_values *v, int start)
 {
 	v->map[start + 3] = v->grid & 0xFFFF;
@@ -23,10 +21,9 @@ void			grid_to_map(t_values *v, int start)
 	v->map[start + 1] = (v->grid >> 32) & 0xFFFF;
 	v->map[start + 0] = (v->grid >> 48) & 0xFFFF;
 }
-
-/*
-**FOR TRANSFERRING FROM MAP TO THE GRID IN USE AT THE MOMENT
 */
+/*
+**FOR TAKING THE GRID FROM MAP
 void			map_to_grid(t_values *v, int start)
 {
 	v->grid = 0;
@@ -38,8 +35,9 @@ void			map_to_grid(t_values *v, int start)
 	v->grid <<= 16;
 	v->grid = v->grid | v->map[start + 3];
 }
-
-/*FOR GROWING THE MAP SIZE IF THE BLOCKS DO NOT FIT IN CURRENT MAP*/
+*/
+/*
+**FOR GROWING THE MAP SIZE IF THE BLOCKS DO NOT FIT IN CURRENT MAP
 void			grow_mask(t_values *v)
 {
 	if (v->mask == mask2)
@@ -52,10 +50,11 @@ void			grow_mask(t_values *v)
 		v->mask = v->mask & mask4;
 	}
 }
-
+*/
 /*
 **FOR TESTING THE MINIMUM SIZE MAP NEEDED FOR THE BLOCK FITTING
 */
+ /*
 void			mapsize(t_block *blocks, t_values *v)
 {
 	int	i;
@@ -84,10 +83,11 @@ void			mapsize(t_block *blocks, t_values *v)
 	else
 		v->mask = mask11;
 }
-
+*/
 /*
 **FOR LOOKING IF THE CURRENT GRID HAS EMPTY PLACES TO FIT THE BLOCK INTO
 */
+
 unsigned long	empty_place(unsigned long temp, t_values *v)
 {
 	while ((temp & v->grid) || (temp & v->mask))
@@ -102,6 +102,7 @@ unsigned long	empty_place(unsigned long temp, t_values *v)
 /*
 ** FOR MOVING THE GRID DOWNWARD IF THE BLOCK DOESNT FIT IN CURRENG GRID
 */
+
 int				rows_downward(t_values *v, int j, unsigned long *temp)
 {
 	while (!(empty_place(*temp, v)) && *temp)
@@ -119,17 +120,8 @@ int				rows_downward(t_values *v, int j, unsigned long *temp)
 	return (j);
 }
 
-/*
-void			remove_block(t_values *v, int *j, unsigned long *temp)
-{
-	map_to_grid(v, *j);
-	v->grid = *temp ^ v->grid;
-	grid_to_map(v, *j);
-	*temp >>= 1;
-}
-*/
 void			remove_or_save_block(t_values *v, int *j,
-									 unsigned long *temp, int i)
+										unsigned long *temp, int i)
 {
 	if (i == 0)
 	{
@@ -146,16 +138,18 @@ void			remove_or_save_block(t_values *v, int *j,
 	}
 }
 
+/*
 void	save_info(t_block *blocks, unsigned long temp, int j, int i)
 {
 	blocks[i].block = temp;
 	blocks[i].row = j;
 }
+*/
 
 unsigned long	block_to_grid(t_block *blocks, t_values *v, int i)
 {
 	unsigned long	temp;
-	int	j;
+	int				j;
 
 	v->line_index = 0x800000000000000;
 	v->success = 0;
@@ -177,10 +171,6 @@ unsigned long	block_to_grid(t_block *blocks, t_values *v, int i)
 			return (0);
 	}
 	return ((!i && !v->grid) ? 0 : 1);
-/*	if (!i && !v->grid)
-		return (0);
-	return (1);*/
-
 }
 
 void	assemble(t_block *blocks)
@@ -205,79 +195,6 @@ void	assemble(t_block *blocks)
 		v.grid >>= 1;
 		i++;
 	}
-	grow_mask(&v);	make_square(blocks, i, v.mask);
+	grow_mask(&v);
+	make_square(blocks, i, v.mask);
 }
-
-/*>>>>>>>>>>>WORKS FINE, ONE TOO LONG FUNCTION<<<<<<<<<<<<<*/
-/*
-unsigned long	block_to_grid(t_block *blocks, t_values *v, int i)
-{
-	unsigned long	temp;
-	unsigned long	tempgrid;
-	int	j;
-
-	v->line_index = 0x800000000000000;
-	v->success = 0;
-	j = 0;
-	temp = blocks[i].block;
-	while (temp && !v->success)
-	{
-		if (v->mask < mask4)
-			j = rows_downward(v, j, &temp);
-		temp = empty_place(temp, v);
-		if (temp)
-		{
-			v->grid = temp | v->grid;
-			tempgrid = v->grid;
-			grid_to_map(v, j);
-			map_to_grid(v, 0);
-			if (!(v->success = block_to_grid(blocks, v, i + 1)))
-			{
-				v->grid = tempgrid;
-				v->grid = temp ^ v->grid;
-				grid_to_map(v, j);
-				temp >>= 1;
-			}
-			else
-			{
-				blocks[i].block = temp;
-				blocks[i].row = j;
-			}
-		}
-		else
-			return (0);
-	}
-	if (!i && !v->grid)
-		return (0);
-	return (1);
-}
-*/
-
-/* FIRST VERSION>>>>>>>>>>>>>>>>>>>>> THIS WORKS ONLY ON 4 ROWS<<<<<<<<<<<<<<<<<<<<<<<<*/
-/*
-unsigned long	block_to_grid(unsigned long *grid, t_block *blocks, unsigned long mask, int i)
-  {
-  unsigned long temp;
-  unsigned int succed = 0;
-
-  temp = blocks[i].block;
-  while (temp && !succed)
-  {
-	  temp = empty_place(*grid, mask, temp);
-	  if (temp)
-	  {
-		  *grid = temp | *grid;
-		  if (!(succed = block_to_grid(grid, blocks, mask, i + 1)))
-		  {
-			  *grid = temp ^ *grid;
-			  temp >>= 1;
-		  }
-	  }
-	  else
-		  return (0);
-  }
-  if (!i && !*grid)
-	  return (0);
-  return (1);
-}
-*/

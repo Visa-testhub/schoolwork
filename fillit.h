@@ -6,7 +6,7 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:28:11 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/01/02 13:49:07 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/03 19:32:34 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ typedef struct		s_tetrimino{
 	unsigned long	block;
 	int				row;
 }					t_block;
-
-/*
-typedef struct		s_asdasd{
-	unsigned short	l[16];
-}					t_map;
-*/
 
 typedef struct		s_temporary{
 	unsigned long	grid;
@@ -84,6 +78,11 @@ void				validate(t_block *blocks, int fd);
 void				assemble(t_block *blocks);
 void				make_square(t_block *blocks, int i, unsigned long mask);
 void				usage_and_exit(int errortype);
+void				grow_mask(t_values *v);
+void				mapsize(t_block *blocks, t_values *v);
+void				save_info(t_block *blocks, unsigned long temp, int j, int i);
+void				map_to_grid(t_values *v, int start);
+void				grid_to_map(t_values *v, int start);
 unsigned long   	block_to_grid(t_block *blocks, t_values *v, int i);
 
 #endif

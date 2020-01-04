@@ -97,9 +97,9 @@ void	validate(t_block *blocks, int fd)
 	int		ret;
 	int		i;
 
-	i = -1;
+	i = 0;
 	letter = 'A';
-	while ((ret = read(fd, buf, 21)) && i++ <= 25)
+	while (ret = read(fd, buf, 21))
 	{
 		buf[21] = '\0';
 		if ((ret > 0 && ret < 20) || ret < 0)
@@ -108,6 +108,8 @@ void	validate(t_block *blocks, int fd)
 		make_shape(buf, &blocks[i]);
 		validate_shape(blocks[i]);
 		blocks[i].type = letter++;
+		if (i++ > 25)
+			usage_and_exit(2);
 	}
 	while (++i <= 26)
 	{

@@ -13,78 +13,6 @@
 #include "fillit.h"
 
 /*
-**FOR TRANSFERRING CURRENT GRID TO THE MAP
-void			grid_to_map(t_values *v, int start)
-{
-	v->map[start + 3] = v->grid & 0xFFFF;
-	v->map[start + 2] = (v->grid >> 16) & 0xFFFF;
-	v->map[start + 1] = (v->grid >> 32) & 0xFFFF;
-	v->map[start + 0] = (v->grid >> 48) & 0xFFFF;
-}
-*/
-/*
-**FOR TAKING THE GRID FROM MAP
-void			map_to_grid(t_values *v, int start)
-{
-	v->grid = 0;
-	v->grid = v->map[start];
-	v->grid <<= 16;
-	v->grid = v->grid | v->map[start + 1];
-	v->grid <<= 16;
-	v->grid = v->grid | v->map[start + 2];
-	v->grid <<= 16;
-	v->grid = v->grid | v->map[start + 3];
-}
-*/
-/*
-**FOR GROWING THE MAP SIZE IF THE BLOCKS DO NOT FIT IN CURRENT MAP
-void			grow_mask(t_values *v)
-{
-	if (v->mask == mask2)
-		v->mask = mask3;
-	else if (v->mask == mask3)
-		v->mask = mask4;
-	else
-	{
-		v->mask >>= 1;
-		v->mask = v->mask & mask4;
-	}
-}
-*/
-/*
-**FOR TESTING THE MINIMUM SIZE MAP NEEDED FOR THE BLOCK FITTING
-*/
- /*
-void			mapsize(t_block *blocks, t_values *v)
-{
-	int	i;
-
-	i = 0;
-	while (blocks[i].type != '\0')
-		i++;
-	if (i == 1)
-		v->mask = mask2;
-	else if (i == 2)
-		v->mask = mask3;
-	else if (i == 3 || i == 4)
-		v->mask = mask4;
-	else if (i == 5 || i == 6)
-		v->mask = mask5;
-	else if (i >= 7 && i <= 9)
-		v->mask = mask6;
-	else if (i >= 10 && i <= 12)
-		v->mask = mask7;
-	else if (i >= 13 && i <= 16)
-		v->mask = mask8;
-	else if (i >= 17 && i <= 20)
-		v->mask = mask9;
-	else if (i >= 21 && i <= 25)
-		v->mask = mask10;
-	else
-		v->mask = mask11;
-}
-*/
-/*
 **FOR LOOKING IF THE CURRENT GRID HAS EMPTY PLACES TO FIT THE BLOCK INTO
 */
 
@@ -137,14 +65,6 @@ void			remove_or_save_block(t_values *v, int *j,
 		map_to_grid(v, 0);
 	}
 }
-
-/*
-void	save_info(t_block *blocks, unsigned long temp, int j, int i)
-{
-	blocks[i].block = temp;
-	blocks[i].row = j;
-}
-*/
 
 unsigned long	block_to_grid(t_block *blocks, t_values *v, int i)
 {

@@ -65,6 +65,18 @@ char	**fill_square(char **square, t_block blocks, unsigned long mask)
 	return (square);
 }
 
+void	delete_square(char **square)
+{
+	int	i;
+
+	i = 0;
+	while (square[i])
+	{
+		free(square[i]);
+		i++;		
+	}
+}
+
 void	make_square(t_block *blocks, int i, unsigned long mask)
 {
 	char	**square;
@@ -86,6 +98,7 @@ void	make_square(t_block *blocks, int i, unsigned long mask)
 		i = 0;
 		j++;
 	}
+	delete_square(square);
 }
 /*
 ** PREVIUS VERSION OF PUTTING THE BLOCKS INT THE SQUARE

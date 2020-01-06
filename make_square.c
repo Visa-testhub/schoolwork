@@ -6,7 +6,7 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 10:35:59 by vkeinane          #+#    #+#             */
-/*   Updated: 2019/12/13 13:55:57 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/06 12:53:15 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	delete_square(char **square)
 	while (square[i])
 	{
 		free(square[i]);
-		i++;		
+		i++;
 	}
 }
 

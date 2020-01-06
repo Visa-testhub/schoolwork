@@ -6,7 +6,7 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 14:50:29 by vkeinane          #+#    #+#             */
-/*   Updated: 2019/12/13 14:01:52 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/06 13:44:57 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,9 @@ void	validate(t_block *blocks, int fd)
 
 	i = -1;
 	letter = 'A';
-	while (ret = read(fd, buf, 21))
+	while ((ret = read(fd, buf, 21)) && ++i <= 26)
 	{
-		if (++i > 26)
-			usage_and_exit(2);
+		i > 25 ? usage_and_exit(2) : i;
 		buf[21] = '\0';
 		if ((ret > 0 && ret < 20) || ret < 0)
 			usage_and_exit(2);
@@ -110,7 +109,9 @@ void	validate(t_block *blocks, int fd)
 		make_shape(buf, &blocks[i]);
 		validate_shape(blocks[i]);
 		blocks[i].type = letter++;
+		ret == 20 ? letter = 'a' : ret;
 	}
+	letter == 'a' ? letter : usage_and_exit(2);
 	while (++i <= 26)
 	{
 		blocks[i].type = '\0';

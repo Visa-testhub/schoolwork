@@ -6,7 +6,7 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 14:09:35 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/01/03 19:40:34 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/06 12:50:07 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ unsigned long	block_to_grid(t_block *blocks, t_values *v, int i)
 	return ((!i && !v->grid) ? 0 : 1);
 }
 
-void	assemble(t_block *blocks)
+void			assemble(t_block *blocks)
 {
 	int				i;
 	t_values		v;

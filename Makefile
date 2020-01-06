@@ -7,7 +7,9 @@ HEADER = fillit.h
 
 OBJECT = $(patsubst %.c, %.o, $(SRC))
 
-all:
+all: $(NAME)
+
+$(NAME):
 	gcc -Wall -Wextra -Werror -c $(SRC)
 	gcc -o $(NAME) $(OBJECT)
 

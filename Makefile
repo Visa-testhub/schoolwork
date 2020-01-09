@@ -13,9 +13,6 @@ $(NAME):
 	gcc -Wall -Wextra -Werror -c $(SRC)
 	gcc -o $(NAME) $(OBJECT)
 
-lldb:
-	gcc -g $(SRC)
-
 clean:
 	/bin/rm -f $(OBJECT)
 

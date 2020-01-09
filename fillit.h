@@ -6,7 +6,7 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:28:11 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/01/06 12:52:16 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/09 12:01:47 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <stdio.h>
-
-/*
-** DELET <stdio.h>
-*/
 
 typedef struct		s_tetrimino{
 	unsigned char	type;
@@ -84,6 +79,5 @@ void				save_info(t_block *blocks, unsigned long temp, \
 								int j, int i);
 void				map_to_grid(t_values *v, int start);
 void				grid_to_map(t_values *v, int start);
-unsigned long		block_to_grid(t_block *blocks, t_values *v, int i);
 
 #endif

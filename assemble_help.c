@@ -6,11 +6,16 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 19:00:33 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/01/03 19:37:18 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/09 11:53:51 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+/*
+** For adding the current grid, which contains iformation
+** for 4 rows to the map for safe keeping.
+*/
 
 void	map_to_grid(t_values *v, int start)
 {
@@ -24,6 +29,10 @@ void	map_to_grid(t_values *v, int start)
 	v->grid = v->grid | v->map[start + 3];
 }
 
+/*
+** For looking if the current position of grid contains any blocks.
+*/
+
 void	grid_to_map(t_values *v, int start)
 {
 	v->map[start + 3] = v->grid & 0xFFFF;
@@ -31,6 +40,10 @@ void	grid_to_map(t_values *v, int start)
 	v->map[start + 1] = (v->grid >> 32) & 0xFFFF;
 	v->map[start + 0] = (v->grid >> 48) & 0xFFFF;
 }
+
+/*
+** Growing mask if the current size of the square is not enough.
+*/
 
 void	grow_mask(t_values *v)
 {
@@ -44,6 +57,10 @@ void	grow_mask(t_values *v)
 		v->mask = v->mask & mask4;
 	}
 }
+
+/*
+** At the start the starting size of square is counted here.
+*/
 
 void	mapsize(t_block *blocks, t_values *v)
 {
@@ -73,6 +90,11 @@ void	mapsize(t_block *blocks, t_values *v)
 	else
 		v->mask = mask11;
 }
+
+/*
+** When all the blocks have been fitted to the map,
+** the location of block is saved for printing the information.
+*/
 
 void	save_info(t_block *blocks, unsigned long temp, int j, int i)
 {

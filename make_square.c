@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-char	**make_space(char **square, int i)
+static char	**make_space(char **square, int i)
 {
 	int	j;
 	int	k;
@@ -37,7 +37,7 @@ char	**make_space(char **square, int i)
 	return (square);
 }
 
-char	**fill_square(char **square, t_block blocks, unsigned long mask)
+static char	**fill_square(char **square, t_block blocks, unsigned long mask)
 {
 	unsigned long	flag;
 	int				i;
@@ -65,7 +65,7 @@ char	**fill_square(char **square, t_block blocks, unsigned long mask)
 	return (square);
 }
 
-void	delete_square(char **square)
+static void	delete_square(char **square)
 {
 	int	i;
 
@@ -77,7 +77,7 @@ void	delete_square(char **square)
 	}
 }
 
-void	make_square(t_block *blocks, int i, unsigned long mask)
+void		make_square(t_block *blocks, int i, unsigned long mask)
 {
 	char	**square;
 	int		j;

@@ -6,13 +6,17 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 14:50:29 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/01/06 13:44:57 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/09 12:29:30 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	validate_shape(t_block blocks)
+/*
+** For testing if all of the blocks are the right shape.
+*/
+
+static void	validate_shape(t_block blocks)
 {
 	if (blocks.block == UP_L || blocks.block == LEFT_L)
 		return ;
@@ -37,7 +41,13 @@ void	validate_shape(t_block blocks)
 	usage_and_exit(2);
 }
 
-void	make_shape(char *buf, t_block *blocks)
+/*
+** For storing the information that each block contains
+** into a bitfield, and normalizing each block to their
+** most top left position.
+*/
+
+static void	make_shape(char *buf, t_block *blocks)
 {
 	int	i;
 
@@ -64,7 +74,12 @@ void	make_shape(char *buf, t_block *blocks)
 		blocks->block <<= 16;
 }
 
-void	validate_chars(char *buf, int ret)
+/*
+** For checking the string trough if the characters are what they
+** are supposed to be.
+*/
+
+static void	validate_chars(char *buf, int ret)
 {
 	int	hash;
 	int dot;
@@ -90,7 +105,7 @@ void	validate_chars(char *buf, int ret)
 		usage_and_exit(2);
 }
 
-void	validate(t_block *blocks, int fd)
+void		validate(t_block *blocks, int fd)
 {
 	char	buf[22];
 	char	letter;

@@ -6,7 +6,7 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 14:09:35 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/01/06 15:47:30 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/09 12:28:44 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **FOR LOOKING IF THE CURRENT GRID HAS EMPTY PLACES TO FIT THE BLOCK INTO
 */
 
-unsigned long	empty_place(unsigned long temp, t_values *v)
+static unsigned long	empty_place(unsigned long temp, t_values *v)
 {
 	while ((temp & v->grid) || (temp & v->mask))
 	{
@@ -31,7 +31,7 @@ unsigned long	empty_place(unsigned long temp, t_values *v)
 ** FOR MOVING THE GRID DOWNWARD IF THE BLOCK DOESNT FIT IN CURRENG GRID
 */
 
-int				rows_downward(t_values *v, int j, unsigned long *temp)
+static int				rows_downward(t_values *v, int j, unsigned long *temp)
 {
 	while (!(empty_place(*temp, v)) && *temp)
 	{
@@ -52,8 +52,15 @@ int				rows_downward(t_values *v, int j, unsigned long *temp)
 	return (j);
 }
 
-void			remove_or_save_block(t_values *v, int *j,
-										unsigned long *temp, int i)
+/*
+** This function eiher saves the current block by adding its information
+** to the map.
+** Or removes the block from the map if the rest of the blocks didn't fit
+** in to the grid.
+*/
+
+static void				remove_or_save_block(t_values *v, int *j,
+											unsigned long *temp, int i)
 {
 	int	k;
 
@@ -79,7 +86,12 @@ void			remove_or_save_block(t_values *v, int *j,
 	}
 }
 
-unsigned long	block_to_grid(t_block *blocks, t_values *v, int i)
+/*
+** The recursive function testing all the blocks to the grid
+** to see if they fit.
+*/
+
+static unsigned long	block_to_grid(t_block *blocks, t_values *v, int i)
 {
 	unsigned long	temp;
 	int				j;
@@ -106,7 +118,7 @@ unsigned long	block_to_grid(t_block *blocks, t_values *v, int i)
 	return ((!i && !v->grid) ? 0 : 1);
 }
 
-void			assemble(t_block *blocks)
+void					assemble(t_block *blocks)
 {
 	int				i;
 	t_values		v;

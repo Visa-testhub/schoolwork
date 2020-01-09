@@ -6,15 +6,11 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:16:00 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/01/09 11:18:22 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/09 11:58:54 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-/*
-**PUT SOME KIND OF TEST TO TEST IF THERE ARE MORE THAN 26 BLOCKSSSSSSSSSSSSS
-*/
 
 int	main(int argc, char **argv)
 {

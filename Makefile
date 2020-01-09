@@ -22,12 +22,5 @@ clean:
 fclean: clean
 	/bin/rm -f $(NAME)
 
-tclean:
-	/bin/rm -f *~
-
-lldbclean:
-	/bin/rm -rf a.out.dSYM
-	/bin/rm -f a.out
-
 re: fclean
 	make

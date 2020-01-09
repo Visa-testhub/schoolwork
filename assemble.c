@@ -6,7 +6,7 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/13 14:09:35 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/01/06 12:50:07 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/01/06 15:47:30 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ int				rows_downward(t_values *v, int j, unsigned long *temp)
 			grid_to_map(v, j);
 			v->line_index >>= 1;
 			j++;
+			while (!(*temp & 0x8000800080008000))
+				*temp <<= 1;
+			while (!(*temp & 0xF000000000000000))
+				*temp <<= 16;
 		}
 		else
 			*temp = 0;
@@ -51,12 +55,21 @@ int				rows_downward(t_values *v, int j, unsigned long *temp)
 void			remove_or_save_block(t_values *v, int *j,
 										unsigned long *temp, int i)
 {
+	int	k;
+
+	k = 0;
 	if (i == 0)
 	{
 		map_to_grid(v, *j);
 		v->grid = *temp ^ v->grid;
 		grid_to_map(v, *j);
 		*temp >>= 1;
+		v->line_index = 0x800000000000000;
+		while (k != *j)
+		{
+			v->line_index >>= 1;
+			k++;
+		}
 	}
 	else
 	{

@@ -7,7 +7,7 @@ RUN apt-get update \
 https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh \
 | bash \
 && apt-get install -y gitlab.ce 
-
+RUN 
 #ENTRYPOINT (./opt/gitlab/embedded/bin/runsvdir-start &) \
 #&& gitlab-ctl reconfigure \
 #&& gitlab-ctl tail

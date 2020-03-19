@@ -8,7 +8,7 @@ RUN curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/s
 RUN apt-get install gitlab-ce
 #ENTRYPOINT gitlab-ctl reconfigure
 
-
+#RUN echo "EXTERNAL_URL=\"https://gitlab.example.com\"" >> /etc/gitlab/gitlab.rb
 #RUN echo "external_url /"https:gitlab.example.com/"" >> /etc/gitlab/gitlab.rb
 #RUN apt-get install -y gitlab-ce
 #RUN mkdir -p /etc/gitlab/ssl \

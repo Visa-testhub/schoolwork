@@ -3,14 +3,17 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "E:\\New GCC\\include",
+                "${workspaceFolder}/ft_printf/libft"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "intelliSenseMode": "msvc-x64"
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "\"E:\\New GCC\\bin\\gcc\""
         }
     ],
     "version": 4

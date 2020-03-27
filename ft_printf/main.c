@@ -1,10 +1,11 @@
-#include <studio.h>
+#include "ft_printf.h"
+#include <stdio.h>
 
 int     main(void)
 {
-    char a;
+    int a;
 
-    a = 1;
-    printf ("hello Windows %c",a);
+    a = 55421;
+    printf("Moikka Maika ja Noel %%d");
     return (0);
 }

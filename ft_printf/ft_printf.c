@@ -8,11 +8,11 @@ void    read_flags(const char *format, t_printf *data, int place)
 
 //make somewhere function that saves str from starting point to end point
 //use ft_strsub
-void    save_string(const char *format, t_printf *data)
+/**void    save_string(const char *format, t_printf *data)
 {
     
 }
-
+**/
 // here read the string and check for %sign.
 int     start(const char *format, t_printf *data)
 {

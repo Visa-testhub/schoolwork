@@ -7,14 +7,17 @@
 
 typedef struct  s_printf
 {
-    va_list     var;
-    char        *new_str;
-    int         param_count;
-    int         chars_written;
-    int         str_current_place;
-    int         str_start_point;
+    va_list             var;
+    char                *storage;
+    char                *f;//format
+    int                 len;
+    int                 precision;
+    int                 param_count;
+    int                 chars_written;
+    int                 str_start_point;
+    unsigned short      flags;
 //    char        *format;
-};              t_printf
+}                       t_printf;
 
 
 int     ft_printf(const char *format, ...);

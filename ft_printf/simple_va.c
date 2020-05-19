@@ -22,11 +22,7 @@ int     list(int num, ...)
 int     main(int argc, char *argv)
 {
     char    *str;
-
-    if (argc = 2)
-    {
-        list
-    }
+    
     str = "moi kaikki pillinaamat.";
 //    ft_putstr(str);
     list(4, 5, 2345, 2345);

@@ -9,6 +9,3 @@ clean:
 
 fclean:	clean
 	/bin/rm -rf test_gnl
-
-tildeclean:
-	/bin/rm *~

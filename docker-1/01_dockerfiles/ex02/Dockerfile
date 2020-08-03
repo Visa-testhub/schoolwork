@@ -18,14 +18,16 @@ ONBUILD RUN cd app \
 && bundle exec rake db:seed
 
 # To build this use 
-# docker build -t ft-rails:on-build /Users/vkeinane/docker/01_dockerfiles/ex02/
+# docker build -t ft-rails:on-build .
 # Then make tmp directory
 # cd tmp
 # Then get the dockerfile from the subject and copy it to tmp
 # This build requires app to be in the same directory as the dockerfile for onbuild
 # git clone https://github.com/mhartl/sample_app_6th_ed test_app
-# Clone that to tmp directory and then build the rest with
-# docker build -t rubyit /Users/vkeinane/docker/01_dockerfiles/ex02/tmp/
+# Clone that to tmp directory and then build the rest in tmp directory, with
+# docker build -t rubyit .
 # docker run -d -p 3000:3000 rubyit
 # open the appropriate website. usually it is 192.168.99.100:3000
+# or you can find the ip with "docker-machine ip Char"
+# remember to put the :3000 behind the ip.
 # you can login to the sample app with EMAIL example@railstutorial.org and PASSWORD foobar

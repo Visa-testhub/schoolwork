@@ -23,8 +23,8 @@ WORKDIR /opt/teamspeak-server
 
 ENTRYPOINT ./ts3server_minimal_runscript.sh
 #to test, use these
-#docker build -t ex01 /Users/vkeinane/docker/01_dockerfiles/ex01
-#docker run -d --restart=always --name teamspeak -p 9987:9987/udp -p 30033:30033 -p 10011:10011  ex01
+#docker build -t teamspeak .
+#docker run -d --restart=always --name teamspeak -p 9987:9987/udp -p 30033:30033 -p 10011:10011  teamspeak
 #copy the docker-mahcine ip Char
 #open teamspeak client and connect to it with ip
 #docker logs teamspeak

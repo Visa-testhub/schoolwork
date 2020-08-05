@@ -1,0 +1,16 @@
+#!/bin/bash
+echo -e "\e[1m"
+date;
+echo -e "\e[0m"
+echo -e "\e[4muptime\e[0m"
+uptime
+echo -e "\n\e[4mCurrently connected:\e[0m"
+w
+echo -e "\n\e[4mLast logins:\e[0m"
+last -a |head -5
+echo -e "\n\e[4mDisk and memory usage:\e[0m"
+df -h | xargs | awk '{print "Free/total disk: " $11 " / " $9}'
+free -m | xargs | awk '{print "Free/total memory: " $17 " / " $8 " MB"}'
+echo -e "\n\e[4mUtilization and most expensive processes:\e[0m\n"
+top -b |head -3
+top -b |head -10 |tail -4

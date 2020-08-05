@@ -1,0 +1,14 @@
+Once you have the hosts file open you'll see most default text is comments, those lines beginning with
+the pound (#) sign. After making changes to your hosts file, consider inserting your own comments
+so you’ll know what the entries are for.
+
+Inserting a redirect into the hosts file is simple.
+Just enter the IP address of the desired server or host, leave a single space, 
+and then enter the domain or hostname you want to point to that IP. 
+Enter only one redirect per line.
+
+When redirecting a real website URL, you should include one redirect with the www 
+and another without, to ensure both will be redirected to your desired IP.
+
+Brought to you from techenix.com
+by ™Vkeinane

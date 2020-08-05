@@ -1,0 +1,4 @@
+Cron is a system service that checks crontabs every minute and executes tasks if it finds any.
+You can do a lot with "cron".
+Command "sudo service cron status" lets you see if cron is up and running.
+Command "crontab -e" lest you edit (add schedules) to your cron.

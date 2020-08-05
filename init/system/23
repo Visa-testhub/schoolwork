@@ -1,0 +1,4 @@
+Use "sudo adduser (new user)".
+man useradd for diffrent options.
+you can change users via ssh with "su (username)".
+then enter the password for that user.

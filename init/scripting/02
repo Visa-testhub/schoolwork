@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if ["$1" != ""]; then
+   sudo passwd --lock $1
+   sudo pkill -9 -u $1
+   sudo userderl -r $1
+else
+	echo "Usage: deluser user_to_delete"
+fi"

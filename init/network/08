@@ -1,0 +1,21 @@
+One way is to chek for diffrent websites that do the searching for you.
+Example.
+Put the name of the website that you are looking the prowider for,
+in the website hostingchecker.com (there are many others, just google it).
+and it will tell you the provider
+
+Another  way for looking for the prowider.
+First you have to find the address of slash16.org.
+This can be done by using nslookup, ping or host.
+Examples
+
+	"nslookup slash16.org"
+
+	"host slash16.org"
+
+	"ping -t 1 slash16.org"
+
+After finding the address, you can use whois with the address to know the prowider.
+Example
+
+	whois 13.33.242.74

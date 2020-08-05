@@ -1,0 +1,2 @@
+RSA keys can usually be found in your home/username/.ssh/id_rsa
+You may have to make them yourself with ssh-keygen command if you dont have them yet.

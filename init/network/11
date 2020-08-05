@@ -1,0 +1,30 @@
+Use the command in previous exrecize and read this
+
+Quoted area from geeksforgeeks.org
+"
+Network Address Translation (NAT)
+
+To access the Internet, one public IP address is needed, but we can use a 
+private IP address in our private network. 
+The idea of NAT is to allow multiple devices to access the Internet through a single public address. 
+To achieve this, the translation of private IP address to a public IP address is required. 
+Network Address Translation (NAT) is a process in which one or more local IP address 
+is translated into one or more Global IP address and vice versa in order to 
+provide Internet access to the local hosts. 
+Also, it does the translation of port numbers i.e. masks the port number of the host 
+with another port number, in the packet that will be routed to the destination. 
+It then makes the corresponding entries of IP address and port number in the NAT table. 
+NAT generally operates on router or firewall.
+
+Network Address Translation (NAT) working –
+
+Generally, the border router is configured for NAT i.e the router which has one interface
+ in local (inside) network and one interface in the global (outside) network. 
+When a packet traverse outside the local (inside) network, 
+then NAT converts that local (private) IP address to a global (public) IP address. 
+When a packet enters the local network, 
+the global (public) IP address is converted to a local (private) IP address.
+"
+
+so in short you can use nslookup for the ip address after your own address and
+find the name nat.hive.fi. from there

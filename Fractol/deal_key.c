@@ -6,17 +6,21 @@
 /*   By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 13:05:39 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/08/03 15:12:38 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/08/05 20:58:43 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fractol.h"
+# include <stdio.h>
 
 void	zoom_picture(int key, t_frctl *f)
 {
 	if (key == 43)
 	{
-		if (f->zoom < 20)
+		if (f->zoom >= 1073741824)
+			f->zoom = f->zoom;
+		f->zoom = (f->zoom) * 2;
+/*		if (f->zoom < 20)
 			f->zoom++;
 		else if (f->zoom >= 20 && f->zoom < 100)
 			f->zoom += 2;
@@ -25,19 +29,21 @@ void	zoom_picture(int key, t_frctl *f)
 		else if (f->zoom >= 200 && f->zoom < 800)
 			f->zoom += 10;
 		else
-			f->zoom += 50;
+			f->zoom += 50;*/
 	}
 	if (key == 45)
 	{
-		if (f->zoom <= 20 && f->zoom > 1)
+		f->zoom = f->zoom / 2;
+/*		if (f->zoom <= 20 && f->zoom > 1)
 			f->zoom--;
 		else if (f->zoom > 20 && f->zoom <= 100)
 			f->zoom -= 2;
 		else if (f->zoom > 100 && f->zoom <= 200)
 			f->zoom -= 5;
 		else if (f->zoom > 200)
-			f->zoom -= 10;
+			f->zoom -= 10;*/
 	}
+	printf("%f\n", f->zoom);
 }
 
 void	move_picture(int key, t_frctl *f)
@@ -82,6 +88,11 @@ void	change_fractaltype(t_frctl *f)
 		f->movex = -0.6;
 		f->fractaltype = 2;
 	}
+	else if (f->fractaltype == 2)
+	{
+		f->movex = 0;
+		f->fractaltype = 3;
+	}
 	else
 	{
 		f->movex = 0;
@@ -103,6 +114,15 @@ int		deal_key(int key, t_frctl *f)
 		change_maxiteration(key, f);
 	if (key == 102)
 		change_fractaltype(f);
+	if (key == 99)
+	{
+		if (f->color == 0)
+			f->color = 1;
+		else if (f->color == 1)
+			f->color = 2;
+		else
+			f->color = 0;
+	}
 	draw_image(f);
 	ft_putstr("key pressed is \n");
 	ft_putnbr(key);

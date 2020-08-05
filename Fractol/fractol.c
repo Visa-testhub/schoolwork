@@ -6,7 +6,7 @@
 /*   By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:46:55 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/08/03 14:01:28 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/08/05 10:31:49 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	read_input(char *str, t_frctl *f)
 		f->fractaltype = 2;
 		return (0);
 	}
-	if (!(ft_strcmp("Something", str)))
+	if (!(ft_strcmp("Burningship", str)))
 	{
 		f->fractaltype = 3;
 		return (0);

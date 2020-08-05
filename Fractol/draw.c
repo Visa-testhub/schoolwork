@@ -6,7 +6,7 @@
 /*   By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 13:18:39 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/08/03 15:10:10 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/08/05 13:54:55 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,98 +22,95 @@ void	my_mlx_pixel_put(t_frctl *f, int x, int y, int color)
 
 static void	put_line_julia(t_frctl *f, t_draw d)
 {
-	f->newr = 1.5 * (d.x - d.w / 2) / (0.5 * f->zoom * d.w) + f->movex;
-	f->newi = (d.y - d.h / 2) / (0.5 * f->zoom * d.h) + f->movey;
+	d.newr = 1.5 * (d.x - d.w / 2) / (0.5 * f->zoom * d.w) + f->movex;
+	d.newi = (d.y - d.hmax / 2) / (0.5 * f->zoom * d.hmax) + f->movey;
 	while (d.i < f->maxiterations)
 	{
-		f->oldr = f->newr;
-		f->oldi = f->newi;
-		f->newr = (f->oldr * f->oldr) - (f->oldi * f->oldi) + f->cr;
-		f->newi = 2 * f->oldr * f->oldi + f->ci;
-		if ((f->newr * f->newr + f->newi * f->newi) > 4)
+		d.oldr = d.newr;
+		d.oldi = d.newi;
+		d.newr = (d.oldr * d.oldr) - (d.oldi * d.oldi) + f->cr;
+		d.newi = 2 * d.oldr * d.oldi + f->ci;
+		if ((d.newr * d.newr + d.newi * d.newi) > 4)
 			break ;
 		d.i++;
 	}
-	f->color = colorpicker(d.i, f->maxiterations);
+	d.color = colorpicker(d.i, f);
 	if (d.i == f->maxiterations)
-		f->color = 0;
-	my_mlx_pixel_put(f, d.x, d.y, f->color);
+		d.color = 0;
+	my_mlx_pixel_put(f, d.x, d.y, d.color);
 }
 
-/*void	draw_julia(t_frctl *f)
+static void	put_line_burning_ship(t_frctl *f, t_draw d)
 {
-	int		x;
-	int		y;
-	int		w;
-	int		h;
-	int		i;
-
-	w = WIN_W - 1;
-	h = WIN_H - 1;
-	x = 0;
-	y = 0;
-	i = 0;
-	while (y < h)
+	d.pr = 1.5 * (d.x - d.w / 2) / (0.5 * f->zoom * d.w) + f->movex;
+	d.pi = (d.y - d.hmax / 2) / (0.5 * f->zoom * d.hmax) + f->movey;
+	d.newr = 0;
+	d.newi = 0;
+	d.oldr = 0;
+	d.oldi = 0;
+	while (d.i < f->maxiterations)
 	{
-		while (x < w)
-		{
-			put_line_julia(f, d);
-			f->newr = 1.5 * (x - w / 2) / (0.5 * f->zoom * w) + f->movex;
-			f->newi = (y - h / 2) / (0.5 * f->zoom * h) + f->movey;
-			while (i < f->maxiterations)
-			{
-				f->oldr = f->newr;
-				f->oldi = f->newi;
-				f->newr = (f->oldr * f->oldr) - (f->oldi * f->oldi) + f->cr;
-				f->newi = 2 * f->oldr * f->oldi + f->ci;
-				if ((f->newr * f->newr + f->newi * f->newi) > 4)
-					break ;
-				i++;
-			}
-			f->color = colorpicker(i, f->maxiterations);
-			if (i == f->maxiterations)
-				f->color = 0;
-			my_mlx_pixel_put(f, x, y, f->color);
-			i = 0;
-			x++;
-		}
-		x = 0;
-		y++;
+		d.oldr = fabs(d.newr);
+		d.oldi = fabs(d.newi);
+		d.newr = d.oldr * d.oldr - d.oldi * d.oldi + d.pr;
+		d.newi = 2 * d.oldr * d.oldi + d.pi;
+		if ((d.newr * d.newr + d.newi * d.newi) > 4)
+			break ;
+		d.i++;
 	}
-}*/
+	d.color = colorpicker(d.i, f);
+	if (d.i == f->maxiterations)
+		d.color = 0;
+	my_mlx_pixel_put(f, d.x, d.y, d.color);
+}
 
 static void	put_line_mandelbrot(t_frctl *f, t_draw d)
 {
-	f->pr = 1.5 * (d.x - d.w / 2) / (0.5 * f->zoom * d.w) + f->movex;
-	f->pi = (d.y - d.h / 2) / (0.5 * f->zoom * d.h) + f->movey;
-	f->newr = 0;
-	f->newi = 0;
-	f->oldr = 0;
-	f->oldi = 0;
+	d.pr = 1.5 * (d.x - d.w / 2) / (0.5 * f->zoom * d.w) + f->movex;
+	d.pi = (d.y - d.hmax / 2) / (0.5 * f->zoom * d.hmax) + f->movey;
+	d.newr = 0;
+	d.newi = 0;
+	d.oldr = 0;
+	d.oldi = 0;
 	while (d.i < f->maxiterations)
 	{
-		f->oldr = f->newr;
-		f->oldi = f->newi;
-		f->newr = f->oldr * f->oldr - f->oldi * f->oldi + f->pr;
-		f->newi = 2 * f->oldr * f->oldi + f->pi;
-		if ((f->newr * f->newr + f->newi * f->newi) > 4)
+		d.oldr = d.newr;
+		d.oldi = d.newi;
+		d.newr = d.oldr * d.oldr - d.oldi * d.oldi + d.pr;
+		d.newi = 2 * d.oldr * d.oldi + d.pi;
+		if ((d.newr * d.newr + d.newi * d.newi) > 4)
 			break ;
 		d.i++;
 	}
-	f->color = colorpicker(d.i, f->maxiterations);
+	d.color = colorpicker(d.i, f);
 	if (d.i == f->maxiterations)
-		f->color = 0;
-	my_mlx_pixel_put(f, d.x, d.y, f->color);
+		d.color = 0;
+	my_mlx_pixel_put(f, d.x, d.y, d.color);
 }
 
 void		draw_fractal(t_frctl *f)
 {
 	t_draw	d;
 
+	get_thread(f, &d);
+/*	if (f->thread1 == (int)pthread_self())
+	{
+		d.y = 0;
+		d.h = 200;
+	}
+	if (f->thread2 == (int)pthread_self())
+	{
+		d.y = 200;
+		d.h = 400;
+	}
+	if (f->thread3 == (int)pthread_self())
+	{
+		d.y = 400;
+		d.h = WIN_HEIGHT - 1;
+	}*/
 	d.w = WIN_WIDHT - 1;
-	d.h = WIN_HEIGHT - 1;
+	d.hmax = WIN_HEIGHT - 1;
 	d.x = 0;
-	d.y = 0;
 	d.i = 0;
 	while (d.y < d.h)
 	{
@@ -121,8 +118,10 @@ void		draw_fractal(t_frctl *f)
 		{
 			if (f->fractaltype == 2)
 				put_line_mandelbrot(f, d);
-			else
+			else if (f->fractaltype == 1)
 				put_line_julia(f, d);
+			else
+				put_line_burning_ship(f, d);
 			d.x++;
 		}
 		d.x = 0;

@@ -1,2 +1,2 @@
 This poroject is introduction to basic networking skills.
-This project still needs the assignments to make sense.
+All the files are answers to the assignment.

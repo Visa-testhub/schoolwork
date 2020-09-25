@@ -6,11 +6,17 @@
 /*   By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 13:21:17 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/07/23 21:41:24 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/09/25 10:47:30 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	exit_pressed(void)
+{
+	ft_shutdown(0);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -35,6 +41,7 @@ int	main(int argc, char **argv)
 	draw_init(&fdf);
 	draw_isometric_map(&fdf);
 	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img, 0, 0);
+	mlx_hook(fdf.win, 17, 0L, exit_pressed, &fdf);
 	mlx_hook(fdf.win, 2, 1L << 0, deal_key, &fdf);
 	mlx_loop(fdf.mlx);
 	return (0);

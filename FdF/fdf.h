@@ -6,7 +6,7 @@
 /*   By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 13:31:41 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/07/27 10:47:58 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/09/25 10:48:03 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define START_COLOR 44031
 
 # include "mlx.h"
+# include "keys.h"
 # include "libft.h"
 # include <fcntl.h>
 # include <unistd.h>
@@ -76,6 +77,7 @@ typedef struct		s_row{
 
 int					deal_key(int key, t_fdf *fdf);
 int					reader(int fd, t_fdf *fdf);
+int					exit_pressed(void);
 int					get_color(t_cord start, t_cord end, int dist, int maxdist);
 void				draw_line(t_cord s, t_cord e, t_fdf fdf);
 void				draw_isometric_map(t_fdf *fdf);

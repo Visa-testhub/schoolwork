@@ -6,7 +6,7 @@
 /*   By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 13:31:41 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/09/25 10:48:03 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/10/14 10:02:27 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define MAX_ROW 1000
 # define WIN_WIDHT 960
 # define WIN_HEIGHT 540
-# define MENU_WIDHT 160
+# define MENU_WIDHT 250
 # define START_COLOR 44031
 
 # include "mlx.h"

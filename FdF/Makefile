@@ -6,7 +6,7 @@
 #    By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 14:06:39 by vkeinane          #+#    #+#              #
-#    Updated: 2020/09/24 11:56:00 by vkeinane         ###   ########.fr        #
+#    Updated: 2020/10/14 10:25:44 by vkeinane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ FLAGS = -Wall -Wextra -Werror
 
 LINKS = -I ./libft \
  -L ./libft -lft \
- -I /usr/local/lib/minilibx \
- -L /usr/local/lib -lmlx \
+ -I ./minilibx \
+ -L ./minilibx -lmlx \
  -I /usr/local/include/X11/ \
  -L /usr/X11/lib -lX11 -lXext \
  -framework OpenGL -framework Appkit

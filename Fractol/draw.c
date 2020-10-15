@@ -6,13 +6,13 @@
 /*   By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 13:18:39 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/08/05 13:54:55 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/08/06 11:48:55 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fractol.h"
+#include "fractol.h"
 
-void	my_mlx_pixel_put(t_frctl *f, int x, int y, int color)
+static void	my_mlx_pixel_put(t_frctl *f, int x, int y, int color)
 {
 	char	*dst;
 
@@ -93,21 +93,6 @@ void		draw_fractal(t_frctl *f)
 	t_draw	d;
 
 	get_thread(f, &d);
-/*	if (f->thread1 == (int)pthread_self())
-	{
-		d.y = 0;
-		d.h = 200;
-	}
-	if (f->thread2 == (int)pthread_self())
-	{
-		d.y = 200;
-		d.h = 400;
-	}
-	if (f->thread3 == (int)pthread_self())
-	{
-		d.y = 400;
-		d.h = WIN_HEIGHT - 1;
-	}*/
 	d.w = WIN_WIDHT - 1;
 	d.hmax = WIN_HEIGHT - 1;
 	d.x = 0;

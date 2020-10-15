@@ -6,7 +6,7 @@
 #    By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/28 18:38:40 by vkeinane          #+#    #+#              #
-#    Updated: 2020/08/03 12:17:47 by vkeinane         ###   ########.fr        #
+#    Updated: 2020/10/15 13:06:45 by vkeinane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ FLAGS = -Wall -Wextra -Werror
 
 LINKS = -I ./libft \
  -L ./libft -lft \
- -I /usr/local/lib/minilibx \
- -L /usr/local/lib -lmlx_x86_64 \
+ -I ./Minilibx \
+ -L ./Minilibx -lmlx \
  -I /usr/local/include/X11/ \
  -L /usr/X11/lib -lX11 -lXext \
  -framework OpenGL -framework Appkit
@@ -33,6 +33,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C libft/
+	make -C Minilibx/
 	gcc -o $(NAME) $(SRC) $(FLAGS) $(LINKS)
 
 lldb:

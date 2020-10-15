@@ -6,7 +6,7 @@
 /*   By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:50:01 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/08/05 13:55:36 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/10/15 13:06:04 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 # define FRACTOL_H
 # define WIN_WIDHT 800
 # define WIN_HEIGHT 600
-# define WIN_W WIN_WIDHT - 1
-# define WIN_H WIN_HEIGHT - 1
+# define PRECISION_BORDER 0x800000000000000
 
 # include "libft.h"
 # include "mlx.h"
-# include <unistd.h>
+# include "keys.h"
 # include <pthread.h>
 # include <math.h>
 
@@ -36,6 +35,7 @@ typedef struct	s_frctl{
 	int			thread1;
 	int			thread2;
 	int			thread3;
+	int			maxiterations;
 	double		mousex;
 	double		mousey;
 	double		cr;
@@ -45,7 +45,6 @@ typedef struct	s_frctl{
 	double		zoom;
 	double		movex;
 	double		movey;
-	int			maxiterations;
 }				t_frctl;
 
 typedef struct	s_draw{
@@ -68,10 +67,10 @@ int				deal_key(int key, t_frctl *f);
 int				deal_button(int button, int x, int y, t_frctl *f);
 int				deal_mouse(int x, int y, t_frctl *f);
 int				colorpicker(int i, t_frctl *f);
+int				exit_pressed(void);
 void			get_thread(t_frctl *f, t_draw *d);
-void			zoom_picture(int key, t_frctl *f);
+void			zoom_picture(int key, t_frctl *f, int type);
 void			shutdown(int err);
-void			my_mlx_pixel_put(t_frctl *f, int x, int y, int color);
 void			draw_image(t_frctl *f);
 void			draw_init(t_frctl *f);
 void			draw_fractal(t_frctl *f);

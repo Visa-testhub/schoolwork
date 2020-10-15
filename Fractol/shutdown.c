@@ -6,11 +6,11 @@
 /*   By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:55:05 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/08/05 10:32:17 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/08/06 11:49:50 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fractol.h"
+#include "fractol.h"
 
 void	shutdown(int err)
 {
@@ -25,5 +25,5 @@ void	shutdown(int err)
 		ft_putendl("Thread creation failed.");
 	if (err == 3)
 		ft_putendl("Thread joining to main thread failed.");
-	exit (0);
+	exit(0);
 }

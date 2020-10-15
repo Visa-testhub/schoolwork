@@ -6,32 +6,31 @@
 /*   By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 12:03:27 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/08/04 15:12:47 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/08/06 11:47:07 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-
-void	third_thread_init(t_frctl *f)
+static void	third_thread_init(t_frctl *f)
 {
 	f->thread3 = (int)pthread_self();
 	draw_fractal(f);
 }
 
-void	second_thread_init(t_frctl *f)
+static void	second_thread_init(t_frctl *f)
 {
 	f->thread2 = (int)pthread_self();
 	draw_fractal(f);
 }
 
-void	first_thread_init(t_frctl *f)
+static void	first_thread_init(t_frctl *f)
 {
 	f->thread1 = (int)pthread_self();
 	draw_fractal(f);
 }
 
-void	draw_image(t_frctl *f)
+void		draw_image(t_frctl *f)
 {
 	pthread_t	threads[3];
 

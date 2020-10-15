@@ -6,11 +6,11 @@
 /*   By: vkeinane <vkeinane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 13:01:13 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/08/05 13:54:35 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/08/06 15:57:36 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fractol.h"
+#include "fractol.h"
 
 void	get_thread(t_frctl *f, t_draw *d)
 {
@@ -61,14 +61,24 @@ int		colorpicker(int i, t_frctl *f)
 void	draw_init(t_frctl *f)
 {
 	if (f->fractaltype == 1)
+	{
+		f->movey = 0;
 		f->movex = 0;
-	else
+	}
+	else if (f->fractaltype == 2)
+	{
+		f->movey = 0;
 		f->movex = -0.6;
-	f->movey = 0;
+	}
+	else
+	{
+		f->movey = -0.5;
+		f->movex = -0.5;
+	}
 	f->mousex = 0;
 	f->mousey = 0;
-	f->cr = -0.6;
-	f->ci = 0.27015;
+	f->cr = 0;
+	f->ci = 0;
 	f->zoom = 1;
 	f->color = 0;
 	f->maxiterations = 50;

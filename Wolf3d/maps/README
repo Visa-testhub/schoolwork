@@ -1,0 +1,18 @@
+Maps are modifiable, but there are couple of rules to them.
+
+- Maps have to be rectangle in their shape meaning each row has to be same lenght
+- All the outside walls must be ones.
+ · example
+	11111
+	10001
+	10201
+	11111
+
+- Only one 2 in the file, which is the player starting position.
+- Maps have to bigger than 4x4 rows.
+- No spaces between map numbers.
+- Only numbers 0, 1, 2 and 3 can be used.
+ · 0 is empty spot
+ · 1 is wall with collision on. (It can't be walked trough)
+ · 2 is player starting position.
+ · 3 is wall with no collision. (Can be walked trough)

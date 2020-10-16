@@ -1,0 +1,3 @@
+Textures are modified .xpm files, that have hex colors instead of c readable code.
+each texture has to be specifically 32x128.
+Meaning 32 rows and each row has 128 hex colors.

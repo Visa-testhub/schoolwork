@@ -10,5 +10,5 @@ The part 1(Network) is done on mac and parts 2(System) and 3(Scripting) in Debia
 In networking part, you can use with mac
  <img src="/Images/Grep_executables.png" widht=100 height=20>
 to sort trough executable commands.
-The list you got can be used like this <img src="/Images/Execute01.png">.
+The list you got can be used like this <img src="/Images/Execute01.png" height=20>.
 

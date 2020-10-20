@@ -6,7 +6,7 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 10:03:15 by vkeinane          #+#    #+#             */
-/*   Updated: 2019/11/22 12:19:47 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/10/20 15:09:09 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 	line = NULL;
 	if (argc > 3)
 	{
-		printf("ahaa fuckers. Bet you tought you can just put arguments endlessly here");
+		printf("No more than 2 arguments for this program :\)");
 		return (0);
 	}
 	if (argc == 2)
@@ -35,7 +35,8 @@ int main(int argc, char **argv)
 		fd1 = open(argv[1], O_RDONLY);
 		fd2 = open(argv[2], O_RDONLY);
 	if (argc == 3){
-		while (get_next_line(fd1, &line) || get_next_line(fd2, &line)){
+		while (get_next_line(fd1, &line) || get_next_line(fd2, &line))
+		{
 			printf("%s\n", line);
 			ft_strdel(&line);
 			printf("%s\n", line);
@@ -43,7 +44,8 @@ int main(int argc, char **argv)
 		}
 	}
 	else if (argc == 2)
-	{while (get_next_line(fd1, &line))
+	{
+		while (get_next_line(fd1, &line))
 		{
 			printf("%s\n", line);
 			ft_strdel(&line);
@@ -52,8 +54,6 @@ int main(int argc, char **argv)
 	else
 	{while (i != 0 && i != -1)
 		{
-//			if (ft_strcmp(argv[1], "q") == 0)
-//				break;
 			i = get_next_line(fd1, &line);
 			printf("%d\n", i);
 			printf("%s\n", line);

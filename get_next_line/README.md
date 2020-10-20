@@ -10,4 +10,5 @@ that it reads a file and dumps the contents in to terminal screen.
 Main use for the gnl is to send it a file descriptor and an address of char pointer.
 Then each call of the gnl will produce one line from a file to that pointer that was sent to gnl.
 Example use
-<img src="/Images/GNL_usage.png" height=20>
+
+<img src="/Images/GNL_usage.png" height=100>

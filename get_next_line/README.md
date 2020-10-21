@@ -12,3 +12,6 @@ Then each call of the gnl will produce one line from a file to that pointer that
 Example use
 
 <img src="/Images/GNL_usage.png" height=100>
+
+In the later projects (FdF, Fractol, wolf3D) get_next_line will be found in the libft library, and its headerfile
+is libft.h

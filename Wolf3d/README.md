@@ -1,15 +1,17 @@
 # Wolf3d
 
 Projects goal is to make game with dynamic view inside a maze.
-<img src="/Images/wolf3d-view.png" height=200>
+
+<img src="/Images/Wolf3d-view.png" height=200>
 
 Objectives for this project is to get more comfortable with  windows(as in windnow in screen),
 colors, events, raycasting, basic alorithms and textures.
 
-<img src="/Images/wolf3d-diffwall.png" height=200>
+<img src="/Images/Wolf3d-diffwall.png" height=200>
 
 # to use:
 >make
+
 >./wolf3d maps/level_1
 
 Requirements are

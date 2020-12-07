@@ -7,7 +7,7 @@ I wanted to give the game more retro look with the oldschool looking graphics.
 
 Objectives for this project is to get more comfortable with  windows(as in windnow in screen),
 colors, events, raycasting, basic alorithms and textures.
-From graphical libraries only window management functions and functions to light up individual
+From graphical libraries only window management functions , envent management and functions to light up individual
 pixels in screen are used
 
 <img src="/Images/Wolf3d-diffwall.png" height=200>

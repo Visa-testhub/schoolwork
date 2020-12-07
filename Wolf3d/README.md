@@ -1,6 +1,7 @@
 # Wolf3d
 
 Projects goal is to make game with dynamic view inside a maze.
+I wanted to give the game more retro look with the oldschool looking graphics.
 
 <img src="/Images/Wolf3d-view.png" height=200>
 

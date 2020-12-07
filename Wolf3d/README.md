@@ -6,6 +6,8 @@ Projects goal is to make game with dynamic view inside a maze.
 
 Objectives for this project is to get more comfortable with  windows(as in windnow in screen),
 colors, events, raycasting, basic alorithms and textures.
+From graphical libraries only window management functions and functions to light up individual
+pixels in screen are used
 
 <img src="/Images/Wolf3d-diffwall.png" height=200>
 

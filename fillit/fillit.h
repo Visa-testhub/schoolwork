@@ -6,7 +6,7 @@
 /*   By: vkeinane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:28:11 by vkeinane          #+#    #+#             */
-/*   Updated: 2020/01/09 12:01:47 by vkeinane         ###   ########.fr       */
+/*   Updated: 2020/12/10 13:37:18 by vkeinane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
+//# include <fcntl.h>
 
 typedef struct		s_tetrimino{
 	unsigned char	type;

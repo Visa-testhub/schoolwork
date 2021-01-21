@@ -3,7 +3,7 @@
 This repository contains most of the projects I have done in Hive Helsinki.
 The programs and functions are usually made with and for mac.
 The most fun I have had was doing DoomNukem with team and wolf3d alone.
-Fractol is most fascinating.
+Fractol has been the most fascinating one.
 
 #DoomNukem
 <img src="/Images/DoomNukem-Hall.png">

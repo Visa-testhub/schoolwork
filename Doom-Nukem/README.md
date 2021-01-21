@@ -1,6 +1,6 @@
 # DoomNukem
-Hive Helsinki project DoomNukem by Alex Nyström, Ted Bergkulla and Visa Keinänen
-                                   anystrom, tbergull and vkeinane
+Hive Helsinki project DoomNukem by Alex Nyström, Ted Bergkulla and Visa Keinänen.
+ anystrom, tbergull and vkeinane
 
 Final score 123/100
 
